@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>AARP Discount</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+	<div class="container">
+
+
+		<h1>AARP Discount Calculator</h1>
+		<div class="row">
+			<div class="input-field col s6">
+				<input id="frame-price" type="number" min="50" placeholder="Enter Frame Price" />
+			</div>
+			<div class="input-field col s6" id="base-lens">
+				<select>
+					<option selected>Select Base Lens Type</option>
+					<option data-value="100">Single Vision $100</option>
+					<option data-value="131">Bifocal $131</option>
+					<option data-value="172">Trifocal $172</option>
+					<option>Progressive</option>
+				</select>
+				<br />
+			</div>
+		</div>
+
+		<!-- If progressive, select type -->
+		<div class="row">
+			<div class="input-field col s6" id="prog-type">
+				<select>
+					<option selected>Select Progressive Lens Type</option>
+					<option>Standard Progressive</option>
+					<option>Premium Progressive</option>
+				</select>
+				<br />
+			</div>
+			<div class="input-field col s6" id="std-prog-list">
+				<select>
+					<option selected>Select Standard Lens Design</option>
+
+					<!-- List Standard Progressive Lenses -->
+					<option>Essilor Adapter ($232)</option>
+					<option>Essilor/Kodak Navigator ($180)</option>
+					<option>Essilor Ovation ($254)</option>
+					<option>Essilor Interview ($181)</option>
+					<option>Essilor Natural ($254)</option>
+					<option>Essilor Adapter ($232)</option>
+					<option>Other/Not Listed</option>
+				</select>
+				<br />
+			</div>
+		</div>
+		<!-- If premium progressive, enter name & price-->
+		<div class="row">
+			<div class="input-field col s4">
+				<input type="number" id="prem-prog-price" placeholder="Enter Base Lens Price" />
+			</div>
+			<div class="input-field col s7">
+				<input id="prem-prog-name" placeholder="Enter Lens Name (Optional)" />
+			</div>
+			<br />
+		</div>
+
+		<select id="ar-type">
+			<option selected>No Anti-Reflective</option>
+			<option>Standard Anti-Reflective ($89)</option>
+			<option>Premium Anti-Reflective</option>
+		</select>
+
+		<!-- If premium A/R, enter price-->
+		<input id="ar-price" placeholder="Enter Premium Anti-Reflective Price" />
+
+		<br />
+
+		<select>
+			<option selected>Choose Lens Material - 15% off</option>
+			<option>CR-39 ($0)</option>
+			<option>Polycarbonate ($60) 40% off</option>
+			<option>Trivex ($110)</option>
+			<option>1.60 Hi Index ($87/$130)</option>
+			<option>1.67 Hi Index ($150)</option>
+			<option>1.74 Hi Index ($190)</option>
+		</select>
+		<br />
+		<div class="row">
+			<form action="#" class="col s6">
+				<p>
+					<label>
+						<input name="group1" type="radio" checked />
+						<span>No Transitions</span>
+					</label>
+				</p>
+				<p>
+					<label>
+						<input name="group1" type="radio" />
+						<span>Transitions</span>
+					</label>
+				</p>
+			</form>
+			<form action="#" class="col s6">
+				<p>
+					<label>
+						<input name="group1" type="radio" checked />
+						<span>No Prism</span>
+					</label>
+				</p>
+				<p>
+					<label>
+						<input name="group1" type="radio" />
+						<span>Prism</span>
+					</label>
+				</p>
+			</form>
+		</div>
+		<br />
+
+		<!-- Other Lens Options -->
+		<div class="input-field">
+			<select id="other-options">
+				<option selected>Other Lens Options</option>
+				<option>Polarized Lenses ($135)</option>
+				<option>Aspheric Lens ($60)</option>
+				<option>Custom Measurements ($15)</option>
+				<option>Drill Mounting ($30)</option>
+				<option>Edge Polish ($25)</option>
+				<option>Groove ($25)</option>
+				<option>Mirror Coating ($80)</option>
+				<option>Premium Scratch (TD2)($55)</option>
+				<option>Roll and Polish ($30)</option>
+				<option>Tint ($25)</option>
+				<option>UV/UV Backside ($25)</option>
+			</select>
+		</div>
+		<div class="input-field">
+			<div name="additional-items" id="additional-dropdowns">
+
+			</div>
+		</div>
+		<div class="row">
+			<button class="btn col s2" id="add">+ Add More</button>
+			<div class="col s2"></div>
+		</div>
+		<div id="results"></div>
+
+		<div class="row">
+			<button class="btn col s4 right" id="calculate" type="submit">Calculate Order</button>
+		</div>
+	</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+ crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="main.js" type="text/javascript"></script>
+
+
+</html>
