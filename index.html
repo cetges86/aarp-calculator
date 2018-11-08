@@ -15,14 +15,14 @@
 		<h1>AARP Discount Calculator</h1>
 		<div class="row">
 			<div class="input-field col s6">
-				<input id="frame-price" type="number" min="50" placeholder="Enter Frame Price" />
+				<input id="frame-price" type="number" min="50" placeholder="$ Enter Frame Price - 30% Discount" />
 			</div>
-			<div class="input-field col s6" id="base-lens">
-				<select>
-					<option selected>Select Base Lens Type</option>
-					<option data-value="100">Single Vision $100</option>
-					<option data-value="131">Bifocal $131</option>
-					<option data-value="172">Trifocal $172</option>
+			<div class="input-field col s6">
+				<select id="base-lens">
+					<option selected>Select Base Lens</option>
+					<option data-value=100 >Single Vision $100 - 30% Discount</option>
+					<option data-value=131>Bifocal $131 - 30% Discount</option>
+					<option data-value=172>Trifocal $172 - 30% Discount</option>
 					<option>Progressive</option>
 				</select>
 				<br />
@@ -39,17 +39,16 @@
 				</select>
 				<br />
 			</div>
-			<div class="input-field col s6" id="std-prog-list">
-				<select>
+			<div class="input-field col s6 std-prog-list">
+				<select id="std-prog-list">
 					<option selected>Select Standard Lens Design</option>
 
 					<!-- List Standard Progressive Lenses -->
-					<option>Essilor Adapter ($232)</option>
-					<option>Essilor/Kodak Navigator ($180)</option>
-					<option>Essilor Ovation ($254)</option>
-					<option>Essilor Interview ($181)</option>
-					<option>Essilor Natural ($254)</option>
-					<option>Essilor Adapter ($232)</option>
+					<option data-value=232>Essilor Adapter ($232)</option>
+					<option data-value=180>Essilor/Kodak Navigator ($180)</option>
+					<option data-value=254>Essilor Ovation ($254)</option>
+					<option data-value=181>Essilor Interview ($181)</option>
+					<option data-value=254>Essilor Natural ($254)</option>
 					<option>Other/Not Listed</option>
 				</select>
 				<br />
@@ -58,34 +57,40 @@
 		<!-- If premium progressive, enter name & price-->
 		<div class="row">
 			<div class="input-field col s4">
-				<input type="number" id="prem-prog-price" placeholder="Enter Base Lens Price" />
+				<input type="number" id="prem-prog-price" placeholder="$ Enter Base Lens Price" />
 			</div>
 			<div class="input-field col s7">
 				<input id="prem-prog-name" placeholder="Enter Lens Name (Optional)" />
 			</div>
 			<br />
 		</div>
+		<div class="row">
+			<div class="input-field col s6">
+				<select id="ar-type">
+					<option selected>No Anti-Reflective</option>
+					<option>Standard Anti-Reflective ($89) - 30% Discount</option>
+					<option>Premium Anti-Reflective</option>
+				</select>
+			</div>
 
-		<select id="ar-type">
-			<option selected>No Anti-Reflective</option>
-			<option>Standard Anti-Reflective ($89)</option>
-			<option>Premium Anti-Reflective</option>
-		</select>
-
-		<!-- If premium A/R, enter price-->
-		<input id="ar-price" placeholder="Enter Premium Anti-Reflective Price" />
-
+			<!-- If premium A/R, enter price-->
+			<div class="input-field col s6">
+				<input id="ar-price" placeholder="$ Enter Premium Anti-Reflective Price" />
+			</div>
+		</div>
 		<br />
-
-		<select>
-			<option selected>Choose Lens Material - 15% off</option>
-			<option>CR-39 ($0)</option>
-			<option>Polycarbonate ($60) 40% off</option>
-			<option>Trivex ($110)</option>
-			<option>1.60 Hi Index ($87/$130)</option>
-			<option>1.67 Hi Index ($150)</option>
-			<option>1.74 Hi Index ($190)</option>
-		</select>
+		<div class="input-field">
+			<select id="lens-material">
+				<option selected>Choose Lens Material - 15% off</option>
+				<option>CR-39 ($0)</option>
+				<option data-value=60>Polycarbonate ($60) 30% off</option>
+				<option data-value=110>Trivex ($110)</option>
+				<option data-value=87>SV 1.60 Hi Index ($87)</option>
+				<option data-value=130>Prog 1.60 Hi Index ($130)</option>
+				<option data-value=150>1.67 Hi Index ($150)</option>
+				<option data-value=190>1.74 Hi Index ($190)</option>
+			</select>
+		</div>
 		<br />
 		<div class="row">
 			<form action="#" class="col s6">
@@ -98,7 +103,7 @@
 				<p>
 					<label>
 						<input name="group1" type="radio" />
-						<span>Transitions</span>
+						<span>Transitions - 40% Discount</span>
 					</label>
 				</p>
 			</form>
@@ -109,6 +114,7 @@
 						<span>No Prism</span>
 					</label>
 				</p>
+				<input type="number" placeholder="Enter Total Number of Diopters" />
 				<p>
 					<label>
 						<input name="group1" type="radio" />

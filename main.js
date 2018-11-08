@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     $("#prog-type").hide();
     $("#prog-type").hide();
-    $("#std-prog-list").hide();
+    $(".std-prog-list").hide();
     $("#prem-prog-name").hide();
     $("#prem-prog-price").hide();
     $("#ar-price").hide();
@@ -14,8 +14,7 @@ $(document).ready(function () {
     //checks for type of progressive
     let selectedLensType = document.getElementById("base-lens");
     let selectedArType = document.getElementById("ar-type");
-
-    let baseLensPrice = $("#base-lens").data("value");
+    let selectedProg = document.getElementById("prog-type");
 
     selectedLensType.addEventListener("change", function (event) {
         selectedLensType = event.target.value;
@@ -33,11 +32,10 @@ $(document).ready(function () {
     function showDropdowns() {
         if (selectedLensType === "Progressive") {
             $("#prog-type").show(1500);
-            let selectedProg = document.getElementById("prog-type");
             selectedProg.addEventListener("change", function (event) {
                 selectedProg = event.target.value;
                 if (selectedProg === "Standard Progressive") {
-                    $("#std-prog-list").show(1000);
+                    $(".std-prog-list").show(1000);
                     $("#prem-prog-name").hide();
                     $("#prem-prog-price").hide();
 
@@ -62,7 +60,23 @@ $(document).ready(function () {
     $("#calculate").on("click", function () {
         confirm("Are you finished with your order?")
         let framePrice = $("#frame-price").val();
-        console.log(parseInt(framePrice) + 1);
+        let baseLensPrice = $("#base-lens").find(":selected").data("value");
+        let arPrice = 89
+        let lensMaterial = $("#lens-material").find(":selected").data("value");
+        if (selectedLensType === "Progressive" && selectedProg === "Standard Progressive") {
+            baseLensPrice = $('#std-prog-list').find(":selected").data("value");
+
+        } else if (selectedLensType === "Progressive" && selectedProg === "Premium Progressive") {
+            baseLensPrice = parseInt($("#prem-prog-price").val());
+        }
+
+        if (selectedArType === "Premium Anti-Reflective"){
+            arPrice = $("#ar-price").val();
+
+        }
+
+        
+        console.log(framePrice*.7, baseLensPrice, arPrice*.7, lensMaterial);
     });
 
 
