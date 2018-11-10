@@ -14,13 +14,13 @@
 
 		<h1>AARP Discount Calculator</h1>
 		<div class="row">
-			<div class="input-field col s6">
+			<div class="input-field input-group col s6">
 				<input id="frame-price" type="number" min="50" placeholder="$ Enter Frame Price - 30% Discount" />
 			</div>
-			<div class="input-field col s6">
+			<div class="input-field input-group col s6">
 				<select id="base-lens">
 					<option selected>Select Base Lens</option>
-					<option data-value=100 >Single Vision $100 - 30% Discount</option>
+					<option data-value=100>Single Vision $100 - 30% Discount</option>
 					<option data-value=131>Bifocal $131 - 30% Discount</option>
 					<option data-value=172>Trifocal $172 - 30% Discount</option>
 					<option>Progressive</option>
@@ -31,7 +31,7 @@
 
 		<!-- If progressive, select type -->
 		<div class="row">
-			<div class="input-field col s6" id="prog-type">
+			<div class="input-field input-group col s6" id="prog-type">
 				<select>
 					<option selected>Select Progressive Lens Type</option>
 					<option>Standard Progressive</option>
@@ -39,7 +39,7 @@
 				</select>
 				<br />
 			</div>
-			<div class="input-field col s6 std-prog-list">
+			<div class="input-field input-group col s6 std-prog-list">
 				<select id="std-prog-list">
 					<option selected>Select Standard Lens Design</option>
 
@@ -56,16 +56,16 @@
 		</div>
 		<!-- If premium progressive, enter name & price-->
 		<div class="row">
-			<div class="input-field col s4">
+			<div class="input-field input-group col s4">
 				<input type="number" id="prem-prog-price" placeholder="$ Enter Base Lens Price" />
 			</div>
-			<div class="input-field col s7">
+			<div class="input-field input-group col s7">
 				<input id="prem-prog-name" placeholder="Enter Lens Name (Optional)" />
 			</div>
 			<br />
 		</div>
 		<div class="row">
-			<div class="input-field col s6">
+			<div class="input-field input-group col s6">
 				<select id="ar-type">
 					<option selected>No Anti-Reflective</option>
 					<option>Standard Anti-Reflective ($89) - 30% Discount</option>
@@ -74,12 +74,12 @@
 			</div>
 
 			<!-- If premium A/R, enter price-->
-			<div class="input-field col s6">
+			<div class="input-field input-group col s6">
 				<input id="ar-price" placeholder="$ Enter Premium Anti-Reflective Price" />
 			</div>
 		</div>
 		<br />
-		<div class="input-field">
+		<div class="input-field input-group">
 			<select id="lens-material">
 				<option selected>Choose Lens Material - 15% off</option>
 				<option>CR-39 ($0)</option>
@@ -96,28 +96,28 @@
 			<form action="#" class="col s6">
 				<p>
 					<label>
-						<input name="group1" type="radio" checked />
+						<input class="input-group" name="group1" type="radio" checked />
 						<span>No Transitions</span>
 					</label>
 				</p>
 				<p>
 					<label>
-						<input name="group1" type="radio" />
-						<span>Transitions - 40% Discount</span>
+						<input class="input-group" id="transitions" name="group1" type="radio" />
+						<span>Transitions</span>
 					</label>
 				</p>
 			</form>
 			<form action="#" class="col s6">
 				<p>
 					<label>
-						<input name="group1" type="radio" checked />
+						<input class="input-group" name="group2" type="radio" checked />
 						<span>No Prism</span>
 					</label>
 				</p>
-				<input type="number" placeholder="Enter Total Number of Diopters" />
+				<input class="input-group" type="number" id="prism-num" placeholder="Enter Total Number of Diopters" />
 				<p>
 					<label>
-						<input name="group1" type="radio" />
+						<input class="input-group" id="prism" name="group2" type="radio" />
 						<span>Prism</span>
 					</label>
 				</p>
@@ -126,7 +126,7 @@
 		<br />
 
 		<!-- Other Lens Options -->
-		<div class="input-field">
+		<div class="input-field input-group">
 			<select id="other-options">
 				<option selected>Other Lens Options</option>
 				<option>Polarized Lenses ($135)</option>
@@ -142,7 +142,7 @@
 				<option>UV/UV Backside ($25)</option>
 			</select>
 		</div>
-		<div class="input-field">
+		<div class="input-field input-group">
 			<div name="additional-items" id="additional-dropdowns">
 
 			</div>
@@ -150,6 +150,33 @@
 		<div class="row">
 			<button class="btn col s2" id="add">+ Add More</button>
 			<div class="col s2"></div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col s4">
+				<h6 id="frame-start"></h6>
+				<h6 id="lens-start"></h6>
+				<h6 id="ar-start"></h6>
+				<h6 id="material-start"></h6>
+				<h6 id="trans-start"></h6>
+				<h6 id="prism-start"></h6>
+			</div>
+			<div class="col s4">
+				<h6 id="frame-adj"></h6>
+				<h6 id="lens-adj"></h6>
+				<h6 id="ar-adj"></h6>
+				<h6 id="material-adj"></h6>
+				<h6 id="trans-adj"></h6>
+				<h6 id="prism-adj"></h6>
+			</div>
+			<div class="col s4">
+				<h6 id="frame-end"></h6>
+				<h6 id="lens-end"></h6>
+				<h6 id="ar-end"></h6>
+				<h6 id="material-end"></h6>
+				<h6 id="trans-end"></h6>
+				<h6 id="prism-end"></h6>
+			</div>Î
 		</div>
 		<div id="results"></div>
 
