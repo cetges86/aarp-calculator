@@ -68,7 +68,7 @@
 			<div class="input-field input-group col s6">
 				<select id="ar-type">
 					<option selected>No Anti-Reflective</option>
-					<option>Standard Anti-Reflective ($89) - 30% Discount</option>
+					<option>Standard Anti-Reflective ($89)</option>
 					<option>Premium Anti-Reflective</option>
 				</select>
 			</div>
@@ -82,7 +82,7 @@
 		<div class="input-field input-group">
 			<select id="lens-material">
 				<option selected>Choose Lens Material - 15% off</option>
-				<option>CR-39 ($0)</option>
+				<option data-value=0>CR-39 ($0)</option>
 				<option data-value=60>Polycarbonate ($60) 30% off</option>
 				<option data-value=110>Trivex ($110)</option>
 				<option data-value=87>SV 1.60 Hi Index ($87)</option>
@@ -127,31 +127,21 @@
 
 		<!-- Other Lens Options -->
 		<div class="input-field input-group">
-			<select id="other-options">
-				<option selected>Other Lens Options</option>
-				<option>Polarized Lenses ($135)</option>
-				<option>Aspheric Lens ($60)</option>
-				<option>Custom Measurements ($15)</option>
-				<option>Drill Mounting ($30)</option>
-				<option>Edge Polish ($25)</option>
-				<option>Groove ($25)</option>
-				<option>Mirror Coating ($80)</option>
-				<option>Premium Scratch (TD2)($55)</option>
-				<option>Roll and Polish ($30)</option>
-				<option>Tint ($25)</option>
-				<option>UV/UV Backside ($25)</option>
+			<select multiple id="other-options">
+				<option disabled selected>Other Lens Options</option>
+				<option value=135>Polarized Lenses ($135)</option>
+				<option value=60>Aspheric Lens ($60)</option>
+				<option value=15>Custom Measurements ($15)</option>
+				<option value=30>Drill Mounting ($30)</option>
+				<option value=25>Edge Polish ($25)</option>
+				<option value=25>Groove ($25)</option>
+				<option value=80>Mirror Coating ($80)</option>
+				<option value=55>Premium Scratch (TD2)($55)</option>
+				<option value=30>Roll and Polish ($30)</option>
+				<option value=25>Tint ($25)</option>
+				<option value=25>UV/UV Backside ($25)</option>
 			</select>
 		</div>
-		<div class="input-field input-group">
-			<div name="additional-items" id="additional-dropdowns">
-
-			</div>
-		</div>
-		<div class="row">
-			<button class="btn col s2" id="add">+ Add More</button>
-			<div class="col s2"></div>
-		</div>
-		<hr>
 		<div class="row">
 			<div class="col s4">
 				<h6 id="frame-start"></h6>
@@ -160,6 +150,7 @@
 				<h6 id="material-start"></h6>
 				<h6 id="trans-start"></h6>
 				<h6 id="prism-start"></h6>
+				<h5 id="total-start"></h5>
 			</div>
 			<div class="col s4">
 				<h6 id="frame-adj"></h6>
@@ -168,7 +159,7 @@
 				<h6 id="material-adj"></h6>
 				<h6 id="trans-adj"></h6>
 				<h6 id="prism-adj"></h6>
-			</div>
+			</div> 
 			<div class="col s4">
 				<h6 id="frame-end"></h6>
 				<h6 id="lens-end"></h6>
@@ -176,9 +167,11 @@
 				<h6 id="material-end"></h6>
 				<h6 id="trans-end"></h6>
 				<h6 id="prism-end"></h6>
-			</div>Î
+			</div>
 		</div>
-		<div id="results"></div>
+		<div id="results">
+
+		</div>
 
 		<div class="row">
 			<button class="btn col s4 right" id="calculate" type="submit">Calculate Order</button>
