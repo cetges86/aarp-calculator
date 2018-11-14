@@ -66,40 +66,42 @@ $(document).ready(function () {
     //end of function
     function displayPrices() {
         framePrice = $("#frame-price").val();
-        finalFrame = (framePrice*.7).toFixed(2)
+        finalFrame = (framePrice * .7).toFixed(2)
         $("#frame-start").text(`Frame Price: $${framePrice}.00`);
-        $("#frame-adj").text(`Frame Adjustment: $${(framePrice*.3).toFixed(2)}`);
+        $("#frame-adj").text(`Frame Adjustment: $${(framePrice * .3).toFixed(2)}`);
         $("#frame-end").text(`Frame Price: $${finalFrame}`);
-        
+
         baseLensPrice = $("#base-lens").find(":selected").data("value");
-        $("#lens-start").text(`Base Lens Price: $${baseLensPrice}.00`);
 
         if (selectedLensType === "Progressive" && selectedProg === "Standard Progressive") {
             baseLensPrice = $('#std-prog-list').find(":selected").data("value");
-            finalLensPrice = (baseLensPrice*.7).toFixed(2);
-            $("#lens-adj").text(`Base Lens Adj.: $${baseLensPrice *.3}`);
+            console.log($('#std-prog-list').find(":selected").data("value"))
+            finalLensPrice = (baseLensPrice * .7).toFixed(2);
+            $("#lens-start").text(`Base Lens Price: $${baseLensPrice}.00`);
+            $("#lens-adj").text(`Base Lens Adj.: $${baseLensPrice * .3}`);
             $("#lens-end").text(`Base Lens Final Price: $${finalLensPrice}`);
 
         } else if (selectedLensType === "Progressive" && selectedProg === "Premium Progressive") {
             baseLensPrice = parseInt($("#prem-prog-price").val());
-            finalLensPrice = ((131*.7) + ((baseLensPrice - 131)*.85)).toFixed(2)
+            finalLensPrice = ((131 * .7) + ((baseLensPrice - 131) * .85)).toFixed(2)
             $("#lens-adj").text(`Base Lens Adj.: $${(baseLensPrice - finalLensPrice).toFixed(2)}`);
             $("#lens-end").text(`Base Lens Final Price: $${finalLensPrice}`);
         } else {
-            finalLensPrice = (baseLensPrice*.7).toFixed(2);
+            $("#lens-start").text(`Base Lens Price: $${baseLensPrice}.00`);
+            finalLensPrice = (baseLensPrice * .7).toFixed(2);
             $("#lens-adj").text(`Base Lens Adj.: $${(baseLensPrice - finalLensPrice).toFixed(2)}`);
             $("#lens-end").text(`Base Lens Final Price: $${finalLensPrice}`);
         }
 
         if (selectedArType === "Premium Anti-Reflective") {
             arPrice = $("#ar-price").val();
-            $("#ar-adj").text(`Anti-Reflective Adj.: $${(arPrice*.15).toFixed(2)}`);
-            $("#ar-end").text(`Anti-Reflective Final Price: $${(arPrice*.85).toFixed(2)}`);
+            $("#ar-adj").text(`Anti-Reflective Adj.: $${(arPrice * .15).toFixed(2)}`);
+            $("#ar-end").text(`Anti-Reflective Final Price: $${(arPrice * .85).toFixed(2)}`);
 
         } else if (selectedArType === "Standard Anti-Reflective ($89)") {
             arPrice = 89;
-            $("#ar-adj").text(`Anti-Reflective Adj.: $${(arPrice*.3).toFixed(2)}`);
-            $("#ar-end").text(`Anti-Reflective Final Price: $${(arPrice*.7).toFixed(2)}`);
+            $("#ar-adj").text(`Anti-Reflective Adj.: $${(arPrice * .3).toFixed(2)}`);
+            $("#ar-end").text(`Anti-Reflective Final Price: $${(arPrice * .7).toFixed(2)}`);
         }
         $("#ar-start").text(`Anti-Reflective Price: $${arPrice}.00`);
 
@@ -107,19 +109,21 @@ $(document).ready(function () {
         $("#material-start").text(`Lens Material Price: $${lensMaterial}.00`);
 
         if (lensMaterial == 60) {
-            finalMat = (lensMaterial*.7).toFixed(2)
-            $("#material-adj").text(`Lens Material Adj.: $${(lensMaterial*.3).toFixed(2)}`);
+            finalMat = (lensMaterial * .7).toFixed(2)
+            $("#material-adj").text(`Lens Material Adj.: $${(lensMaterial * .3).toFixed(2)}`);
             $("#material-end").text(`Lens Material Final Price: $${finalMat}`);
-    
+
         } else {
-            finalMat = (lensMaterial*.85).toFixed(2)
-            $("#material-adj").text(`Lens Material Adj.: $${(lensMaterial*.15).toFixed(2)}`);
+            finalMat = (lensMaterial * .85).toFixed(2)
+            $("#material-adj").text(`Lens Material Adj.: $${(lensMaterial * .15).toFixed(2)}`);
             $("#material-end").text(`Lens Material Final Price: $${finalMat}`);
         }
 
         if ($('#transitions:checked').val() === "on") {
             transChoice = 140
             $('#trans-start').text(`Transitions: $${transChoice}.00`)
+            $('#trans-adj').text(`Transitions: $${transChoice * .4}.00`)
+            $('#trans-end').text(`Transitions: $${transChoice * .6}.00`)
         } else {
             transChoice = 0
             $('#trans-start').text(`Transitions: $${transChoice}.00`)
@@ -138,15 +142,23 @@ $(document).ready(function () {
         })
 
         otherOptions = $.map(lensOptions, Number);
-        const add = (a,b) => {
-            a + b
-        } 
+
+        if (otherOptions.length > 0) {
+            const add = (a, b) => {
+                return a + b
+            }
+
+            let sum = otherOptions.reduce(add);
+            $("#other-start").text(`Sum of Other Options: $${sum}.00`)
+            $("#other-adj").text(`Total Adj for Other Options: $${(sum*.15).toFixed(2)}`);
+            $("#other-end").text(`Final of Other Options: $${(sum*.85.toFixed(2))}`);
+        }
 
         subTotal = parseInt(framePrice) + parseInt(baseLensPrice) + parseInt(arPrice) + parseInt(lensMaterial) + parseInt(transChoice) + parseInt(prism)
         for (let i = 0; i < otherOptions.length; i++) {
             subTotal = subTotal + otherOptions[i];
         }
-        
+
         $("#total-start").text(`Sub Total: $${subTotal}.00`);
 
     }
@@ -158,7 +170,7 @@ $(document).ready(function () {
     $("#calculate").on("click", function () {
         confirm("Are you finished with your order?")
 
-        });
+    });
 
 
 });
