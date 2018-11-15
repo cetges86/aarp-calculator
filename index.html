@@ -6,6 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>AARP Discount</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+	<style>
+		body{font-family: 'Questrial', sans-serif;}
+
+	</style>
 </head>
 
 <body>
@@ -128,7 +133,7 @@
 		<!-- Other Lens Options -->
 		<div class="input-field input-group">
 			<select multiple id="other-options">
-				<option disabled selected>Other Lens Options</option>
+				<option disabled selected>Other Lens Options (15% off)</option>
 				<option value=135>Polarized Lenses ($135)</option>
 				<option value=60>Aspheric Lens ($60)</option>
 				<option value=15>Custom Measurements ($15)</option>
@@ -142,40 +147,69 @@
 				<option value=25>UV/UV Backside ($25)</option>
 			</select>
 		</div>
-		<div class="row">
-			<div class="col s4">
-				<h6 id="frame-start"></h6>
-				<h6 id="lens-start"></h6>
-				<h6 id="ar-start"></h6>
-				<h6 id="material-start"></h6>
-				<h6 id="trans-start"></h6>
-				<h6 id="prism-start"></h6>
-				<h5 id="total-start"></h5>
-			</div>
-			<div class="col s4">
-				<h6 id="frame-adj"></h6>
-				<h6 id="lens-adj"></h6>
-				<h6 id="ar-adj"></h6>
-				<h6 id="material-adj"></h6>
-				<h6 id="trans-adj"></h6>
-				<h6 id="prism-adj"></h6>
-			</div> 
-			<div class="col s4">
-				<h6 id="frame-end"></h6>
-				<h6 id="lens-end"></h6>
-				<h6 id="ar-end"></h6>
-				<h6 id="material-end"></h6>
-				<h6 id="trans-end"></h6>
-				<h6 id="prism-end"></h6>
-			</div>
-		</div>
-		<div id="results">
 
-		</div>
+		<table class="centered striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Starting Price</th>
+					<th>Amount Adjusted</th>
+					<th>Final Price</th>
+				</tr>
+			</thead>
 
-		<div class="row">
-			<button class="btn col s4 right" id="calculate" type="submit">Calculate Order</button>
-		</div>
+			<tbody>
+				<tr>
+					<th>Frame</th>
+					<td id="frame-start"></td>
+					<td id="frame-adj"></td>
+					<td id="frame-end"></td>
+				</tr>
+				<tr>
+					<th>Lens</th>
+					<td id="lens-start"></td>
+					<td id="lens-adj"></td>
+					<td id="lens-end"></td>
+				</tr>
+				<tr>
+					<th>Anti-Reflective</th>
+					<td id="ar-start"></td>
+					<td id="ar-end"></td>
+					<td id="ar-adj"></td>
+				</tr>
+				<tr>
+					<th>Lens Material</th>
+					<td id="material-start"></td>
+					<td id="material-adj"></td>
+					<td id="material-end"></td>
+				</tr>
+				<tr>
+					<th>Transitions</th>
+					<td id="trans-start"></td>
+					<td id="trans-adj"></td>
+					<td id="trans-end"></td>
+				</tr>
+				<tr>
+					<th>Prism</th>
+					<td id="prism-start"></td>
+					<td id="prism-adj"></td>
+					<td id="prism-end"></td>
+				</tr>
+				<tr>
+					<th>Other Options</th>
+					<td id="other-start"></td>
+					<td id="other-adj"></td>
+					<td id="other-end"></td>
+				</tr>
+				<tr>
+					<th>Totals</th>
+					<th id="total-start"></th>
+					<th id="total-adj"></td>
+					<th id="total-end"></td>
+				</tr>
+			</tbody>
+		</table>
+		
 	</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
