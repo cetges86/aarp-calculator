@@ -16,19 +16,23 @@ $(document).ready(function () {
     let selectedProg = document.getElementById("prog-type");
 
     let framePrice = 0
+
     let finalFrame = 0
     let arPrice = 0
     let finalAR = 0
+
     let baseLensPrice = 0
     let finalLensPrice = 0
     let transChoice = 0
     let prism = 0
     let lensMaterial = 0
+
     let finalMat = 0
     let lensOptions = []
     let otherOptions = [];
     let subTotal = 0;
     let finalTotal = 0;
+
 
     selectedLensType.addEventListener("change", function (event) {
         selectedLensType = event.target.value;
@@ -102,6 +106,7 @@ $(document).ready(function () {
             arPrice = 89;
             $("#ar-adj").text(`Anti-Reflective Adj.: $${(arPrice * .3).toFixed(2)}`);
             $("#ar-end").text(`Anti-Reflective Final Price: $${(arPrice * .7).toFixed(2)}`);
+
         }
         $("#ar-start").text(`Anti-Reflective Price: $${arPrice}.00`);
 
@@ -119,6 +124,7 @@ $(document).ready(function () {
             $("#material-end").text(`Lens Material Final Price: $${finalMat}`);
         }
 
+
         if ($('#transitions:checked').val() === "on") {
             transChoice = 140
             $('#trans-start').text(`Transitions: $${transChoice}.00`)
@@ -131,6 +137,7 @@ $(document).ready(function () {
 
         if ($('#prism:checked').val() === "on") {
             prism = 5 * $('#prism-num').val()
+
             $('#prism-start').text(`Prism: $${prism}.00`)
         } else if ($('#prism:checked').val() === "off") {
             prism = 0
@@ -142,6 +149,7 @@ $(document).ready(function () {
         })
 
         otherOptions = $.map(lensOptions, Number);
+
 
         if (otherOptions.length > 0) {
             const add = (a, b) => {
@@ -161,6 +169,7 @@ $(document).ready(function () {
 
         $("#total-start").text(`Sub Total: $${subTotal}.00`);
 
+
     }
 
     $('.input-group').on('change', function () {
@@ -171,6 +180,7 @@ $(document).ready(function () {
         confirm("Are you finished with your order?")
 
     });
+
 
 
 });
