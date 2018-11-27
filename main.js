@@ -15,22 +15,28 @@ $(document).ready(function () {
     let selectedArType = document.getElementById("ar-type");
     let selectedProg = document.getElementById("prog-type");
 
-    let framePrice = 0
+    let framePrice = 0;
+    let finalFrame = 0;
 
-    let finalFrame = 0
-    let arPrice = 0
-    let finalAR = 0
+    let arPrice = 0;
+    let finalAR = 0;
 
-    let baseLensPrice = 0
-    let finalLensPrice = 0
-    let transChoice = 0
-    let prism = 0
-    let lensMaterial = 0
+    let baseLensPrice = 0;
+    let finalLensPrice = 0;
 
+    let transChoice = 0;
+    let prism = 0;
+
+    let lensMaterial = 0;
     let finalMat = 0
+
+    let sum = 0;
+
     let lensOptions = []
     let otherOptions = [];
+    
     let subTotal = 0;
+    let adjTotal = 0
     let finalTotal = 0;
 
 
@@ -69,14 +75,17 @@ $(document).ready(function () {
     };
     //end of function
     function displayPrices() {
+
         framePrice = $("#frame-price").val();
         finalFrame = (framePrice * .7).toFixed(2)
         $("#frame-start").text(`Frame Price: $${framePrice}.00`);
         $("#frame-adj").text(`Frame Adjustment: $${(framePrice * .3).toFixed(2)}`);
         $("#frame-end").text(`Frame Price: $${finalFrame}`);
+        adjTotal = adjTotal + (framePrice * .3).toFixed(2);
+        finalTotal = finalTotal + finalFrame;
+
 
         baseLensPrice = $("#base-lens").find(":selected").data("value");
-
         if (selectedLensType === "Progressive" && selectedProg === "Standard Progressive") {
             baseLensPrice = $('#std-prog-list').find(":selected").data("value");
             console.log($('#std-prog-list').find(":selected").data("value"))
@@ -84,10 +93,12 @@ $(document).ready(function () {
             $("#lens-start").text(`Base Lens Price: $${baseLensPrice}.00`);
             $("#lens-adj").text(`Base Lens Adj.: $${baseLensPrice * .3}`);
             $("#lens-end").text(`Base Lens Final Price: $${finalLensPrice}`);
+            finalTotal = finalTotal + finalLensPrice;
 
         } else if (selectedLensType === "Progressive" && selectedProg === "Premium Progressive") {
             baseLensPrice = parseInt($("#prem-prog-price").val());
             finalLensPrice = ((131 * .7) + ((baseLensPrice - 131) * .85)).toFixed(2)
+            $("#lens-start").text(`Base Lens Price: $${baseLensPrice}.00`);
             $("#lens-adj").text(`Base Lens Adj.: $${(baseLensPrice - finalLensPrice).toFixed(2)}`);
             $("#lens-end").text(`Base Lens Final Price: $${finalLensPrice}`);
         } else {
@@ -99,14 +110,14 @@ $(document).ready(function () {
 
         if (selectedArType === "Premium Anti-Reflective") {
             arPrice = $("#ar-price").val();
+            finalAR = (arPrice * .85).toFixed(2);
             $("#ar-adj").text(`Anti-Reflective Adj.: $${(arPrice * .15).toFixed(2)}`);
-            $("#ar-end").text(`Anti-Reflective Final Price: $${(arPrice * .85).toFixed(2)}`);
-
+            $("#ar-end").text(`Anti-Reflective Final Price: $${finalAR}`);
         } else if (selectedArType === "Standard Anti-Reflective ($89)") {
             arPrice = 89;
+            finalAR = (arPrice * .7).toFixed(2);
             $("#ar-adj").text(`Anti-Reflective Adj.: $${(arPrice * .3).toFixed(2)}`);
-            $("#ar-end").text(`Anti-Reflective Final Price: $${(arPrice * .7).toFixed(2)}`);
-
+            $("#ar-end").text(`Anti-Reflective Final Price: $${finalAR}`);
         }
         $("#ar-start").text(`Anti-Reflective Price: $${arPrice}.00`);
 
@@ -117,7 +128,6 @@ $(document).ready(function () {
             finalMat = (lensMaterial * .7).toFixed(2)
             $("#material-adj").text(`Lens Material Adj.: $${(lensMaterial * .3).toFixed(2)}`);
             $("#material-end").text(`Lens Material Final Price: $${finalMat}`);
-
         } else {
             finalMat = (lensMaterial * .85).toFixed(2)
             $("#material-adj").text(`Lens Material Adj.: $${(lensMaterial * .15).toFixed(2)}`);
@@ -127,21 +137,29 @@ $(document).ready(function () {
 
         if ($('#transitions:checked').val() === "on") {
             transChoice = 140
+
             $('#trans-start').text(`Transitions: $${transChoice}.00`)
             $('#trans-adj').text(`Transitions: $${transChoice * .4}.00`)
             $('#trans-end').text(`Transitions: $${transChoice * .6}.00`)
         } else {
             transChoice = 0
             $('#trans-start').text(`Transitions: $${transChoice}.00`)
+            $('#trans-adj').text(`Transitions: $${transChoice * .4}.00`)
+            $('#trans-end').text(`Transitions: $${transChoice * .6}.00`)
         }
 
         if ($('#prism:checked').val() === "on") {
             prism = 5 * $('#prism-num').val()
 
             $('#prism-start').text(`Prism: $${prism}.00`)
+            $('#prism-adj').text(`Prism: $${(prism * .15).toFixed(2)}`)
+            $('#prism-end').text(`Prism: $${(prism * .85).toFixed(2)}`)
+
         } else if ($('#prism:checked').val() === "off") {
             prism = 0
-            $('prism-start').text(`Prism: $${prism}.00`)
+            $('prism-start').text(`Prism Starting Cost: $${prism}.00`)
+            $('prism-adj').text(`Prism Adj: $${prism}.00`)
+            $('prism-end').text(`Prism Final Cost: $${prism}.00`)
         }
 
         $('#other-options').on('change', function () {
@@ -156,18 +174,21 @@ $(document).ready(function () {
                 return a + b
             }
 
-            let sum = otherOptions.reduce(add);
+            sum = otherOptions.reduce(add);
             $("#other-start").text(`Sum of Other Options: $${sum}.00`)
-            $("#other-adj").text(`Total Adj for Other Options: $${(sum*.15).toFixed(2)}`);
-            $("#other-end").text(`Final of Other Options: $${(sum*.85.toFixed(2))}`);
+            $("#other-adj").text(`Total Adj for Other Options: $${(sum * .15).toFixed(2)}`);
+            $("#other-end").text(`Final Price of Other Options: $${(sum * .85.toFixed(2))}`);
         }
 
         subTotal = parseInt(framePrice) + parseInt(baseLensPrice) + parseInt(arPrice) + parseInt(lensMaterial) + parseInt(transChoice) + parseInt(prism)
         for (let i = 0; i < otherOptions.length; i++) {
             subTotal = subTotal + otherOptions[i];
         }
-
+        finalTotal = parseInt(finalFrame) + parseInt(finalLensPrice) + parseInt(finalAR) + parseInt(finalMat) + parseInt(transChoice * .6) + parseInt((prism * .85).toFixed(2)) + (sum * .85.toFixed(2));
+        adjTotal = subTotal - finalTotal
         $("#total-start").text(`Sub Total: $${subTotal}.00`);
+        $("#total-adj").text(`Total Adj: $${(adjTotal).toFixed(2)}`);
+        $("#total-end").text(`Final Total: $${(finalTotal).toFixed(2)}`);
 
 
     }
