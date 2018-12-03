@@ -1,0 +1,25 @@
+body {
+    font-family: 'Questrial', sans-serif;
+
+}
+
+#aarp-logo {
+    max-width:32%;
+    margin-bottom: 1%;
+    margin-left: 5%;
+}
+
+#vcs-logo {
+    width: 20%;
+}
+
+#banner {
+    letter-spacing: 3px;
+}
+
+header {
+    border-bottom:1px solid grey;
+    box-shadow: 3px 5px 8px #888888;
+    margin-bottom: 2%;
+}
+

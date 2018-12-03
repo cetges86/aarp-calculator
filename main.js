@@ -148,19 +148,28 @@ $(document).ready(function () {
             $('#trans-end').text(`Transitions: $${transChoice * .6}.00`)
         }
 
-        if ($('#prism:checked').val() === "on") {
-            prism = 5 * $('#prism-num').val()
+        $('#prism-form').on('change', function(){            
+            if ($('#prism:checked').val() === "on") {
+                prism = 5 * $('#prism-num').val()
+                $('#err-message').text("")
+                if ($('#prism-num').val() % 1 === 0){
+                    $('#prism-start').text(`Prism: $${prism}.00`)
+                    $('#prism-adj').text(`Prism: $${(prism * .15).toFixed(2)}`)
+                    $('#prism-end').text(`Prism: $${(prism * .85).toFixed(2)}`)
 
-            $('#prism-start').text(`Prism: $${prism}.00`)
-            $('#prism-adj').text(`Prism: $${(prism * .15).toFixed(2)}`)
-            $('#prism-end').text(`Prism: $${(prism * .85).toFixed(2)}`)
+                } else {
+                    $('#err-message').text("Invalid value, please type a whole number.")
+                }
+    
+    
+            } else if ($('#prism:checked').val() === "off") {
+                prism = 0
+                $('prism-start').text(`Prism Starting Cost: $${prism}.00`)
+                $('prism-adj').text(`Prism Adj: $${prism}.00`)
+                $('prism-end').text(`Prism Final Cost: $${prism}.00`)
+            }
+        })
 
-        } else if ($('#prism:checked').val() === "off") {
-            prism = 0
-            $('prism-start').text(`Prism Starting Cost: $${prism}.00`)
-            $('prism-adj').text(`Prism Adj: $${prism}.00`)
-            $('prism-end').text(`Prism Final Cost: $${prism}.00`)
-        }
 
         $('#other-options').on('change', function () {
             lensOptions = $('#other-options').val();
@@ -177,7 +186,7 @@ $(document).ready(function () {
             sum = otherOptions.reduce(add);
             $("#other-start").text(`Sum of Other Options: $${sum}.00`)
             $("#other-adj").text(`Total Adj for Other Options: $${(sum * .15).toFixed(2)}`);
-            $("#other-end").text(`Final Price of Other Options: $${(sum * .85.toFixed(2))}`);
+            $("#other-end").text(`Final Price of Other Options: $${(sum * .85).toFixed(2)}`);
         }
 
         subTotal = parseInt(framePrice) + parseInt(baseLensPrice) + parseInt(arPrice) + parseInt(lensMaterial) + parseInt(transChoice) + parseInt(prism)

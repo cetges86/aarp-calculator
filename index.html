@@ -6,23 +6,30 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>AARP Discount</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" href="./style.css">
 	<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
-	<style>
-		body{font-family: 'Questrial', sans-serif;}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	 crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-	</style>
+
 </head>
 
 <body>
+	<header class="center">
+
+		<img id="vcs-logo" src="img/vcsoptics.png" alt="vcs-logo" /> <img id="aarp-logo" src="img/aarp-logo.png" alt="aarp-logo" />
+		<h3 id="banner"> Discount Calculator</h3>
+	</header>
 	<div class="container">
 
-
-		<h1>AARP Discount Calculator</h1>
 		<div class="row">
 			<div class="input-field input-group col s6">
+				<i class="fas fa-glasses prefix"></i>
 				<input id="frame-price" type="number" min="50" placeholder="$ Enter Frame Price - 30% Discount" />
 			</div>
 			<div class="input-field input-group col s6">
+					<i class="material-icons prefix">lens</i>
 				<select id="base-lens">
 					<option selected>Select Base Lens</option>
 					<option data-value=100>Single Vision $100 - 30% Discount</option>
@@ -71,6 +78,7 @@
 		</div>
 		<div class="row">
 			<div class="input-field input-group col s6">
+					<i class="material-icons prefix">layers</i>
 				<select id="ar-type">
 					<option selected>No Anti-Reflective</option>
 					<option>Standard Anti-Reflective ($89)</option>
@@ -112,7 +120,7 @@
 					</label>
 				</p>
 			</form>
-			<form action="#" class="col s6">
+			<form id="prism-form" class="col s6">
 				<p>
 					<label>
 						<input class="input-group" name="group2" type="radio" checked />
@@ -120,6 +128,7 @@
 					</label>
 				</p>
 				<input class="input-group" type="number" id="prism-num" placeholder="Enter Total Number of Diopters" />
+				<label for="prism-number" id="err-message"></label>
 				<p>
 					<label>
 						<input class="input-group" id="prism" name="group2" type="radio" />
@@ -147,7 +156,7 @@
 				<option value=25>UV/UV Backside ($25)</option>
 			</select>
 		</div>
-
+		<br><br>
 		<table class="centered striped">
 			<thead>
 				<tr>
