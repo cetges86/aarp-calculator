@@ -78,12 +78,12 @@ $(document).ready(function () {
 
         framePrice = $("#frame-price").val();
         finalFrame = (framePrice * .7).toFixed(2)
+        console.log(finalFrame)
         $("#frame-start").text(`Frame Price: $${framePrice}.00`);
         $("#frame-adj").text(`Frame Adjustment: $${(framePrice * .3).toFixed(2)}`);
         $("#frame-end").text(`Frame Price: $${finalFrame}`);
         adjTotal = adjTotal + (framePrice * .3).toFixed(2);
-        finalTotal = finalTotal + finalFrame;
-
+        //finalTotal = finalTotal + finalFrame;
 
         baseLensPrice = $("#base-lens").find(":selected").data("value");
         if (selectedLensType === "Progressive" && selectedProg === "Standard Progressive") {
@@ -189,11 +189,12 @@ $(document).ready(function () {
             $("#other-end").text(`Final Price of Other Options: $${(sum * .85).toFixed(2)}`);
         }
 
-        subTotal = parseInt(framePrice) + parseInt(baseLensPrice) + parseInt(arPrice) + parseInt(lensMaterial) + parseInt(transChoice) + parseInt(prism)
+        subTotal = parseFloat(framePrice) + parseFloat(baseLensPrice) + parseFloat(arPrice) + parseFloat(lensMaterial) + parseFloat(transChoice) + parseFloat(prism)
         for (let i = 0; i < otherOptions.length; i++) {
             subTotal = subTotal + otherOptions[i];
         }
-        finalTotal = parseInt(finalFrame) + parseInt(finalLensPrice) + parseInt(finalAR) + parseInt(finalMat) + parseInt(transChoice * .6) + parseInt((prism * .85).toFixed(2)) + (sum * .85.toFixed(2));
+        finalTotal = parseFloat(finalFrame) + parseFloat(finalLensPrice) + parseFloat(finalAR) + parseFloat(finalMat) + parseFloat(transChoice * .6) + parseFloat((prism * .85).toFixed(2)) + (sum * .85.toFixed(2));
+        console.log(finalTotal, finalMat, parseFloat(finalLensPrice), parseFloat(finalAR))
         adjTotal = subTotal - finalTotal
         $("#total-start").text(`Sub Total: $${subTotal}.00`);
         $("#total-adj").text(`Total Adj: $${(adjTotal).toFixed(2)}`);
