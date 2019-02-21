@@ -118,6 +118,9 @@ $(document).ready(function () {
             finalAR = (arPrice * .7).toFixed(2);
             $("#ar-adj").text(`Anti-Reflective Adj.: $${(arPrice * .3).toFixed(2)}`);
             $("#ar-end").text(`Anti-Reflective Final Price: $${finalAR}`);
+        } else {
+            $("#ar-adj").text(`Anti-Reflective Adj.: $${(arPrice * .3).toFixed(2)}`);
+            $("#ar-end").text(`Anti-Reflective Final Price: $${finalAR}`);
         }
         $("#ar-start").text(`Anti-Reflective Price: $${arPrice}.00`);
 
