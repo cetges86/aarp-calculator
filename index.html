@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<link rel="stylesheet" href="./style.css">
 	<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-	 crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
@@ -20,214 +20,217 @@
 <body>
 	<header class="center">
 
-		<img id="vcs-logo" src="img/vcsoptics.png" alt="vcs-logo" /> <img id="aarp-logo" src="img/aarp-logo.png" alt="aarp-logo" />
+		<img id="vcs-logo" src="img/vcsoptics.png" alt="vcs-logo" /> <img id="aarp-logo" src="img/aarp-logo.png"
+			alt="aarp-logo" />
 		<h3 id="banner"> Discount Calculator</h3>
 	</header>
 	<div class="container">
-		<p id="banner-message" class="center">Please Note: This only applies to a complete pair of glasses. Lenses only is a flat 15% discount.</h6>
-		<br>
-		<div class="row">
+		<p id="banner-message" class="center">Please Note: This only applies to a complete pair of glasses. Lenses only
+			is a flat 15% discount.</h6>
+			<br>
+			<div class="row">
 
-			<div class="input-field input-group col s6">
-				<i class="fas fa-glasses prefix"></i>
-				<input class="validate" id="frame-price" type="number" min="50" placeholder="$ Enter Frame Price - 30% Discount" />
-				<span class="helper-text" data-error="Please no decimals. This may affect your calculations" data-success="">Frame</span>
-			</div>
-			<div class="input-field input-group col s6">
+				<div class="input-field input-group col s6">
+					<i class="fas fa-glasses prefix"></i>
+					<input class="validate" id="frame-price" type="number" min="50"
+						placeholder="$ Enter Frame Price - 30% Discount" />
+					<span class="helper-text" data-error="Must be a whole number. This may affect your calculations"
+						data-success="Frame Price">Frame Price</span>
+				</div>
+				<div class="input-field input-group col s6">
 					<i class="material-icons prefix">lens</i>
-				<select id="base-lens">
-					<option selected>Select Base Lens</option>
-					<option data-value=100>Single Vision $100 - 30% Discount</option>
-					<option data-value=131>Bifocal $131 - 30% Discount</option>
-					<option data-value=172>Trifocal $172 - 30% Discount</option>
-					<option>Progressive</option>
-				</select>
-				<span class="helper-text">Lens</span>
-				<br />
+					<select id="base-lens">
+						<option selected>Select Base Lens</option>
+						<option data-value=100>Single Vision $100 - 30% Discount</option>
+						<option data-value=131>Bifocal $131 - 30% Discount</option>
+						<option data-value=172>Trifocal $172 - 30% Discount</option>
+						<option>Progressive</option>
+					</select>
+					<span class="helper-text">Lens</span>
+					<br />
+				</div>
 			</div>
-		</div>
 
-		<!-- If progressive, select type -->
-		<div class="row">
-			<div class="input-field input-group col s6" id="prog-type">
-				<select>
-					<option selected>Select Progressive Lens Type</option>
-					<option>Standard Progressive</option>
-					<option>Premium Progressive</option>
-				</select>
-				<br />
+			<!-- If progressive, select type -->
+			<div class="row">
+				<div class="input-field input-group col s6" id="prog-type">
+					<select>
+						<option selected>Select Progressive Lens Type</option>
+						<option>Standard Progressive</option>
+						<option>Premium Progressive</option>
+					</select>
+					<br />
+				</div>
+				<div class="input-field input-group col s6 std-prog-list">
+					<select id="std-prog-list">
+						<option selected>Select Standard Lens Design</option>
+						<!-- List Standard Progressive Lenses -->
+						<option data-value=232>Essilor Adapter ($232)</option>
+						<option data-value=180>Essilor/Kodak Navigator ($180)</option>
+						<option data-value=254>Essilor Ovation ($254)</option>
+						<option data-value=181>Essilor Interview ($181)</option>
+						<option data-value=254>Essilor Natural ($254)</option>
+					</select>
+					<br />
+				</div>
+				<!-- If premium progressive, enter price-->
+				<div id="prem-prog-fields" class="input-field input-group col s6">
+					<input id="prem-prog-price" class="validate" type="number" placeholder="$ Enter Base Lens Price" />
+					<span class="helper-text" data-error="Must be a whole number. This may affect your calculations."
+						data-success="Premium Progressive Price">Premium Progressive Price</span>
+				</div>
 			</div>
-			<div class="input-field input-group col s6 std-prog-list">
-				<select id="std-prog-list">
-					<option selected>Select Standard Lens Design</option>
-					<!-- List Standard Progressive Lenses -->
-					<option data-value=232>Essilor Adapter ($232)</option>
-					<option data-value=180>Essilor/Kodak Navigator ($180)</option>
-					<option data-value=254>Essilor Ovation ($254)</option>
-					<option data-value=181>Essilor Interview ($181)</option>
-					<option data-value=254>Essilor Natural ($254)</option>
-				</select>
-				<br />
-			</div>
-		</div>
-		<!-- If premium progressive, enter name & price-->
-		<div class="row">
-			<div id="prem-prog-price" class="input-field input-group col s4">
-				<input type="number" placeholder="$ Enter Base Lens Price" />
-				<span class="helper-text" data-error="Please no decimals" data-success="">Premium Progressive Price</span>
+			<div class="row">
+				<div class="input-field input-group col s6">
+					<i class="material-icons prefix">layers</i>
+					<select id="ar-type">
+						<option selected>No Anti-Reflective</option>
+						<option>Standard Anti-Reflective ($89)</option>
+						<option>Premium Anti-Reflective</option>
+					</select>
+					<span class="helper-text">Anti-Reflective</span>
+				</div>
+
+				<!-- If premium A/R, enter price-->
+				<div id="ar-fields" class="input-field input-group col s6">
+					<input id="ar-price" class="validate" placeholder="$ Enter Premium Anti-Reflective Price" />
+					<span class="helper-text" data-error="Must be a whole number. This may affect your calculations."
+						data-success="AR Price">AR Price</span>
+				</div>
 			</div>
 			<br />
-		</div>
-		<div class="row">
-			<div class="input-field input-group col s6">
-					<i class="material-icons prefix">layers</i>
-				<select id="ar-type">
-					<option selected>No Anti-Reflective</option>
-					<option>Standard Anti-Reflective ($89)</option>
-					<option>Premium Anti-Reflective</option>
+			<div class="input-field input-group">
+				<select id="lens-material">
+					<option selected data-value=0>CR-39 ($0)</option>
+					<option data-value=60>Polycarbonate ($60) 30% off</option>
+					<option data-value=110>Trivex ($110)</option>
+					<option data-value=87>SV 1.60 Hi Index ($87)</option>
+					<option data-value=130>MF 1.60 Hi Index ($130)</option>
+					<option data-value=150>1.67 Hi Index ($150)</option>
+					<option data-value=190>1.74 Hi Index ($190)</option>
 				</select>
-				<span class="helper-text">Anti-Reflective</span>
-
+				<span class="helper-text">Lens Material</span>
 			</div>
-
-			<!-- If premium A/R, enter price-->
-			<div id="ar-price" class="input-field input-group col s6">
-				<input class="validate" placeholder="$ Enter Premium Anti-Reflective Price" />
-				<span class="helper-text" data-error="Please no decimals" data-success="AR Price">AR Price</span>
+			<br />
+			<div class="row">
+				<form action="#" class="col s6">
+					<p>
+						<label>
+							<input class="input-group" name="group1" type="radio" checked />
+							<span>No Transitions</span>
+						</label>
+					</p>
+					<p>
+						<label>
+							<input class="input-group" id="transitions" name="group1" type="radio" />
+							<span>Transitions</span>
+						</label>
+					</p>
+				</form>
+				<form id="prism-form" class="col s6">
+					<p>
+						<label>
+							<input class="input-group" id="no-prism" name="group2" type="radio" checked />
+							<span>No Prism</span>
+						</label>
+					</p>
+					<input class="input-group" type="number" id="prism-num"
+						placeholder="Enter Total Number of Diopters" />
+					<label for="prism-number" id="err-message"></label>
+					<p>
+						<label>
+							<input class="input-group" id="prism" name="group2" type="radio" />
+							<span>Prism</span>
+						</label>
+					</p>
+				</form>
 			</div>
-		</div>
-		<br />
-		<div class="input-field input-group">
-			<select id="lens-material">
-				<option selected data-value=0>CR-39 ($0)</option>
-				<option data-value=60>Polycarbonate ($60) 30% off</option>
-				<option data-value=110>Trivex ($110)</option>
-				<option data-value=87>SV 1.60 Hi Index ($87)</option>
-				<option data-value=130>MF 1.60 Hi Index ($130)</option>
-				<option data-value=150>1.67 Hi Index ($150)</option>
-				<option data-value=190>1.74 Hi Index ($190)</option>
-			</select>
-			<span class="helper-text">Lens Material</span>
-		</div>
-		<br />
-		<div class="row">
-			<form action="#" class="col s6">
-				<p>
-					<label>
-						<input class="input-group" name="group1" type="radio" checked />
-						<span>No Transitions</span>
-					</label>
-				</p>
-				<p>
-					<label>
-						<input class="input-group" id="transitions" name="group1" type="radio" />
-						<span>Transitions</span>
-					</label>
-				</p>
-			</form>
-			<form id="prism-form" class="col s6">
-				<p>
-					<label>
-						<input class="input-group" id="no-prism" name="group2" type="radio" checked />
-						<span>No Prism</span>
-					</label>
-				</p>
-				<input class="input-group" type="number" id="prism-num" placeholder="Enter Total Number of Diopters" />
-				<label for="prism-number" id="err-message"></label>
-				<p>
-					<label>
-						<input class="input-group" id="prism" name="group2" type="radio" />
-						<span>Prism</span>
-					</label>
-				</p>
-			</form>
-		</div>
-		<br />
+			<br />
 
-		<!-- Other Lens Options -->
-		<div class="input-field input-group">
-			<select multiple id="other-options">
-				<option disabled selected>Other Lens Options (15% off)</option>
-				<option value=135>Polarized Lenses ($135)</option>
-				<option value=60>Aspheric Lens ($60)</option>
-				<option value=15>Custom Measurements ($15)</option>
-				<option value=30>Drill Mounting ($30)</option>
-				<option value=25>Edge Polish ($25)</option>
-				<option value=25>Groove ($25)</option>
-				<option value=80>Mirror Coating ($80)</option>
-				<option value=55>Premium Scratch (TD2)($55)</option>
-				<option value=30>Roll and Polish ($30)</option>
-				<option value=25>Tint ($25)</option>
-				<option value=25>UV/UV Backside ($25)</option>
-			</select>
-		</div>
-		<br><br>
-		<table class="centered striped">
-			<thead>
-				<tr>
-					<th></th>
-					<th>Starting Price</th>
-					<th>Amount Adjusted</th>
-					<th>Final Price</th>
-				</tr>
-			</thead>
+			<!-- Other Lens Options -->
+			<div class="input-field input-group">
+				<select multiple id="other-options">
+					<option disabled selected>Other Lens Options (15% off)</option>
+					<option value=135>Polarized Lenses ($135)</option>
+					<option value=60>Aspheric Lens ($60)</option>
+					<option value=15>Custom Measurements ($15)</option>
+					<option value=30>Drill Mounting ($30)</option>
+					<option value=25>Edge Polish ($25)</option>
+					<option value=25>Groove ($25)</option>
+					<option value=80>Mirror Coating ($80)</option>
+					<option value=55>Premium Scratch (TD2)($55)</option>
+					<option value=30>Roll and Polish ($30)</option>
+					<option value=25>Tint ($25)</option>
+					<option value=25>UV/UV Backside ($25)</option>
+				</select>
+			</div>
+			<br><br>
+			<table class="centered striped">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Starting Price</th>
+						<th>Amount Adjusted</th>
+						<th>Final Price</th>
+					</tr>
+				</thead>
 
-			<tbody>
-				<tr>
-					<th>Frame</th>
-					<td id="frame-start"></td>
-					<td id="frame-adj"></td>
-					<td id="frame-end"></td>
-				</tr>
-				<tr>
-					<th>Lens</th>
-					<td id="lens-start"></td>
-					<td id="lens-adj"></td>
-					<td id="lens-end"></td>
-				</tr>
-				<tr>
-					<th>Lens Material</th>
-					<td id="material-start"></td>
-					<td id="material-adj"></td>
-					<td id="material-end"></td>
-				</tr>
-				<tr>
-					<th>Anti-Reflective</th>
-					<td id="ar-start"></td>
-					<td id="ar-adj"></td>
-					<td id="ar-end"></td>
-				</tr>
-				<tr>
-					<th>Transitions</th>
-					<td id="trans-start"></td>
-					<td id="trans-adj"></td>
-					<td id="trans-end"></td>
-				</tr>
-				<tr>
-					<th>Other Options</th>
-					<td id="other-start"></td>
-					<td id="other-adj"></td>
-					<td id="other-end"></td>
-				</tr>
-				<tr>
-					<th>Prism</th>
-					<td id="prism-start"></td>
-					<td id="prism-adj"></td>
-					<td id="prism-end"></td>
-				</tr>
-				<tr>
-					<th>Totals</th>
-					<th class="center" id="total-start"></th>
-					<th class="center" id="total-adj"></th>
-					<th class="center" id="total-end"></th>
-				</tr>
-			</tbody>
-		</table>
+				<tbody>
+					<tr>
+						<th>Frame</th>
+						<td id="frame-start"></td>
+						<td id="frame-adj"></td>
+						<td id="frame-end"></td>
+					</tr>
+					<tr>
+						<th>Lens</th>
+						<td id="lens-start"></td>
+						<td id="lens-adj"></td>
+						<td id="lens-end"></td>
+					</tr>
+					<tr>
+						<th>Lens Material</th>
+						<td id="material-start"></td>
+						<td id="material-adj"></td>
+						<td id="material-end"></td>
+					</tr>
+					<tr>
+						<th>Anti-Reflective</th>
+						<td id="ar-start"></td>
+						<td id="ar-adj"></td>
+						<td id="ar-end"></td>
+					</tr>
+					<tr>
+						<th>Transitions</th>
+						<td id="trans-start"></td>
+						<td id="trans-adj"></td>
+						<td id="trans-end"></td>
+					</tr>
+					<tr>
+						<th>Other Options</th>
+						<td id="other-start"></td>
+						<td id="other-adj"></td>
+						<td id="other-end"></td>
+					</tr>
+					<tr>
+						<th>Prism</th>
+						<td id="prism-start"></td>
+						<td id="prism-adj"></td>
+						<td id="prism-end"></td>
+					</tr>
+					<tr>
+						<th>Totals</th>
+						<th class="center" id="total-start"></th>
+						<th class="center" id="total-adj"></th>
+						<th class="center" id="total-end"></th>
+					</tr>
+				</tbody>
+			</table>
 
 	</div>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
- crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="main.js" type="text/javascript"></script>
 

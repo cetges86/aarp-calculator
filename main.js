@@ -5,15 +5,14 @@ $(document).ready(function () {
     $("#prog-type").hide();
     $("#prog-type").hide();
     $(".std-prog-list").hide();
-    $("#prem-prog-name").hide();
-    $("#prem-prog-price").hide();
-    $("#ar-price").hide();
+    $("#prem-prog-fields").hide();
+    $("#ar-fields").hide();
     $("#additional-dropdowns").hide();
 
     //checks for type of progressive
-    let selectedLensType = document.getElementById("base-lens");
-    let selectedArType = document.getElementById("ar-type");
-    let selectedProg = document.getElementById("prog-type");
+    let selectedLensType = $('#base-lens');
+    let selectedArType = $("#ar-type");
+    let selectedProg = $("#prog-type");
 
     let framePrice = 0;
     let finalFrame = 0;
@@ -40,17 +39,17 @@ $(document).ready(function () {
     let finalTotal = 0;
 
 
-    selectedLensType.addEventListener("change", function (event) {
+    selectedLensType.on("change", function (event) {
         selectedLensType = event.target.value;
         showDropdowns();
     })
 
-    selectedArType.addEventListener("change", function (event) {
+    selectedArType.on("change", function (event) {
         selectedArType = event.target.value;
         if (selectedArType === "Premium Anti-Reflective") {
-            $("#ar-price").show(1000);
+            $("#ar-fields").show(1000);
         } else {
-            $("#ar-price").hide(500);
+            $("#ar-fields").hide(500);
         }
     });
 
@@ -59,25 +58,22 @@ $(document).ready(function () {
     function showDropdowns() {
         if (selectedLensType === "Progressive") {
             $("#prog-type").show(1500);
-            selectedProg.addEventListener("change", function (event) {
+            selectedProg.on("change", function (event) {
                 selectedProg = event.target.value;
                 if (selectedProg === "Standard Progressive") {
                     $(".std-prog-list").show(1000);
-                    $("#prem-prog-name").hide();
-                    $("#prem-prog-price").hide();
+                    $("#prem-prog-fields").hide();
 
                 } else if (selectedProg === "Premium Progressive") {
                     $(".std-prog-list").hide();
-                    $("#prem-prog-name").show(1000);
-                    $("#prem-prog-price").show(1000);
+                    $("#prem-prog-fields").show(1000);
                 }
 
             })
         } else {
             $("#prog-type").hide(500);
             $(".std-prog-list").hide(500);
-            $("#prem-prog-name").hide(500);
-            $("#prem-prog-price").hide(500);
+            $("#prem-prog-fields").hide(500);
         }
 
     };
@@ -86,18 +82,18 @@ $(document).ready(function () {
 
         framePrice = parseInt($("#frame-price").val());
         finalFrame = (framePrice * .7).toFixed(2)
+
         $("#frame-start").text(`Frame Price: $${framePrice}.00`);
         $("#frame-adj").text(`Frame Adjustment: $${(framePrice * .3).toFixed(2)}`);
         $("#frame-end").text(`Frame Price: $${finalFrame}`);
         adjTotal = adjTotal + (framePrice * .3).toFixed(2);
-        //finalTotal = finalTotal + finalFrame;
 
         baseLensPrice = $("#base-lens").find(":selected").data("value");
         if (selectedLensType === "Progressive" && selectedProg === "Standard Progressive") {
             baseLensPrice = $('#std-prog-list').find(":selected").data("value");
             finalLensPrice = (baseLensPrice * .7).toFixed(2);
             $("#lens-start").text(`Base Lens Price: $${baseLensPrice}.00`);
-            $("#lens-adj").text(`Base Lens Adj.: $${baseLensPrice * .3}`);
+            $("#lens-adj").text(`Base Lens Adj.: $${(baseLensPrice * .3).toFixed(2)}`);
             $("#lens-end").text(`Base Lens Final Price: $${finalLensPrice}`);
             finalTotal = finalTotal + finalLensPrice;
 
@@ -159,7 +155,6 @@ $(document).ready(function () {
 
         $('#prism-form').on('change', function () {
             if ($('#prism').prop('checked')) {
-                console.log($('#prism:checked').val());
                 prism = 5 * $('#prism-num').val()
                 $('#err-message').text("")
                 if ($('#prism-num').val() % 1 === 0 || $('#prism-num').val() === 0) {
@@ -214,18 +209,11 @@ $(document).ready(function () {
         $("#total-adj").text(`Total Adj: $${(adjTotal).toFixed(2)}`);
         $("#total-end").text(`Final Total: $${(finalTotal).toFixed(2)}`);
 
-
     }
 
     $('.input-group').on('change', function () {
-        displayPrices();
+        if (finalFrame != NaN) {
+            displayPrices();
+        }
     });
-
-    $("#calculate").on("click", function () {
-        confirm("Are you finished with your order?")
-
-    });
-
-
-
 });
