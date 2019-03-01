@@ -16,7 +16,10 @@ body {
 #banner {
     letter-spacing: 3px;
 }
-
+#banner-message {
+    color:red;
+    font-weight:bold;
+}
 header {
     border-bottom:1px solid grey;
     box-shadow: 3px 5px 8px #888888;

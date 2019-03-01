@@ -24,13 +24,14 @@
 		<h3 id="banner"> Discount Calculator</h3>
 	</header>
 	<div class="container">
-		<p class="center">Please Note: This only applies to a complete pair of glasses. Lenses only is a flat 15% discount.</h6>
+		<p id="banner-message" class="center">Please Note: This only applies to a complete pair of glasses. Lenses only is a flat 15% discount.</h6>
 		<br>
 		<div class="row">
 
 			<div class="input-field input-group col s6">
 				<i class="fas fa-glasses prefix"></i>
-				<input id="frame-price" type="number" min="50" placeholder="$ Enter Frame Price - 30% Discount" />
+				<input class="validate" id="frame-price" type="number" min="50" placeholder="$ Enter Frame Price - 30% Discount" />
+				<span class="helper-text" data-error="Please no decimals. This may affect your calculations" data-success="">Frame</span>
 			</div>
 			<div class="input-field input-group col s6">
 					<i class="material-icons prefix">lens</i>
@@ -41,6 +42,7 @@
 					<option data-value=172>Trifocal $172 - 30% Discount</option>
 					<option>Progressive</option>
 				</select>
+				<span class="helper-text">Lens</span>
 				<br />
 			</div>
 		</div>
@@ -58,25 +60,21 @@
 			<div class="input-field input-group col s6 std-prog-list">
 				<select id="std-prog-list">
 					<option selected>Select Standard Lens Design</option>
-
 					<!-- List Standard Progressive Lenses -->
 					<option data-value=232>Essilor Adapter ($232)</option>
 					<option data-value=180>Essilor/Kodak Navigator ($180)</option>
 					<option data-value=254>Essilor Ovation ($254)</option>
 					<option data-value=181>Essilor Interview ($181)</option>
 					<option data-value=254>Essilor Natural ($254)</option>
-					<option>Other/Not Listed</option>
 				</select>
 				<br />
 			</div>
 		</div>
 		<!-- If premium progressive, enter name & price-->
 		<div class="row">
-			<div class="input-field input-group col s4">
-				<input type="number" id="prem-prog-price" placeholder="$ Enter Base Lens Price" />
-			</div>
-			<div class="input-field input-group col s7">
-				<input id="prem-prog-name" placeholder="Enter Lens Name (Optional)" />
+			<div id="prem-prog-price" class="input-field input-group col s4">
+				<input type="number" placeholder="$ Enter Base Lens Price" />
+				<span class="helper-text" data-error="Please no decimals" data-success="">Premium Progressive Price</span>
 			</div>
 			<br />
 		</div>
@@ -88,25 +86,28 @@
 					<option>Standard Anti-Reflective ($89)</option>
 					<option>Premium Anti-Reflective</option>
 				</select>
+				<span class="helper-text">Anti-Reflective</span>
+
 			</div>
 
 			<!-- If premium A/R, enter price-->
-			<div class="input-field input-group col s6">
-				<input id="ar-price" placeholder="$ Enter Premium Anti-Reflective Price" />
+			<div id="ar-price" class="input-field input-group col s6">
+				<input class="validate" placeholder="$ Enter Premium Anti-Reflective Price" />
+				<span class="helper-text" data-error="Please no decimals" data-success="AR Price">AR Price</span>
 			</div>
 		</div>
 		<br />
 		<div class="input-field input-group">
 			<select id="lens-material">
-				<option selected>Choose Lens Material - 15% off</option>
-				<option data-value=0>CR-39 ($0)</option>
+				<option selected data-value=0>CR-39 ($0)</option>
 				<option data-value=60>Polycarbonate ($60) 30% off</option>
 				<option data-value=110>Trivex ($110)</option>
 				<option data-value=87>SV 1.60 Hi Index ($87)</option>
-				<option data-value=130>Prog 1.60 Hi Index ($130)</option>
+				<option data-value=130>MF 1.60 Hi Index ($130)</option>
 				<option data-value=150>1.67 Hi Index ($150)</option>
 				<option data-value=190>1.74 Hi Index ($190)</option>
 			</select>
+			<span class="helper-text">Lens Material</span>
 		</div>
 		<br />
 		<div class="row">
@@ -127,7 +128,7 @@
 			<form id="prism-form" class="col s6">
 				<p>
 					<label>
-						<input class="input-group" name="group2" type="radio" checked />
+						<input class="input-group" id="no-prism" name="group2" type="radio" checked />
 						<span>No Prism</span>
 					</label>
 				</p>

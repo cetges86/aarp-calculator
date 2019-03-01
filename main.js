@@ -34,7 +34,7 @@ $(document).ready(function () {
 
     let lensOptions = []
     let otherOptions = [];
-    
+
     let subTotal = 0;
     let adjTotal = 0
     let finalTotal = 0;
@@ -49,6 +49,8 @@ $(document).ready(function () {
         selectedArType = event.target.value;
         if (selectedArType === "Premium Anti-Reflective") {
             $("#ar-price").show(1000);
+        } else {
+            $("#ar-price").hide(500);
         }
     });
 
@@ -65,20 +67,25 @@ $(document).ready(function () {
                     $("#prem-prog-price").hide();
 
                 } else if (selectedProg === "Premium Progressive") {
-                    $("#std-prog-list").hide();
+                    $(".std-prog-list").hide();
                     $("#prem-prog-name").show(1000);
                     $("#prem-prog-price").show(1000);
                 }
+
             })
+        } else {
+            $("#prog-type").hide(500);
+            $(".std-prog-list").hide(500);
+            $("#prem-prog-name").hide(500);
+            $("#prem-prog-price").hide(500);
         }
 
     };
     //end of function
     function displayPrices() {
 
-        framePrice = $("#frame-price").val();
+        framePrice = parseInt($("#frame-price").val());
         finalFrame = (framePrice * .7).toFixed(2)
-        console.log(finalFrame)
         $("#frame-start").text(`Frame Price: $${framePrice}.00`);
         $("#frame-adj").text(`Frame Adjustment: $${(framePrice * .3).toFixed(2)}`);
         $("#frame-end").text(`Frame Price: $${finalFrame}`);
@@ -88,7 +95,6 @@ $(document).ready(function () {
         baseLensPrice = $("#base-lens").find(":selected").data("value");
         if (selectedLensType === "Progressive" && selectedProg === "Standard Progressive") {
             baseLensPrice = $('#std-prog-list').find(":selected").data("value");
-            console.log($('#std-prog-list').find(":selected").data("value"))
             finalLensPrice = (baseLensPrice * .7).toFixed(2);
             $("#lens-start").text(`Base Lens Price: $${baseLensPrice}.00`);
             $("#lens-adj").text(`Base Lens Adj.: $${baseLensPrice * .3}`);
@@ -109,7 +115,7 @@ $(document).ready(function () {
         }
 
         if (selectedArType === "Premium Anti-Reflective") {
-            arPrice = $("#ar-price").val();
+            arPrice = parseInt($("#ar-price").val());
             finalAR = (arPrice * .85).toFixed(2);
             $("#ar-adj").text(`Anti-Reflective Adj.: $${(arPrice * .15).toFixed(2)}`);
             $("#ar-end").text(`Anti-Reflective Final Price: $${finalAR}`);
@@ -142,34 +148,35 @@ $(document).ready(function () {
             transChoice = 140
 
             $('#trans-start').text(`Transitions: $${transChoice}.00`)
-            $('#trans-adj').text(`Transitions: $${transChoice * .4}.00`)
-            $('#trans-end').text(`Transitions: $${transChoice * .6}.00`)
+            $('#trans-adj').text(`Transitions Adj: $${transChoice * .4}.00`)
+            $('#trans-end').text(`Transitions Final Price: $${transChoice * .6}.00`)
         } else {
             transChoice = 0
             $('#trans-start').text(`Transitions: $${transChoice}.00`)
-            $('#trans-adj').text(`Transitions: $${transChoice * .4}.00`)
-            $('#trans-end').text(`Transitions: $${transChoice * .6}.00`)
+            $('#trans-adj').text(`Transitions Adj: $${transChoice * .4}.00`)
+            $('#trans-end').text(`Transitions Final Price: $${transChoice * .6}.00`)
         }
 
-        $('#prism-form').on('change', function(){            
-            if ($('#prism:checked').val() === "on") {
+        $('#prism-form').on('change', function () {
+            if ($('#prism').prop('checked')) {
+                console.log($('#prism:checked').val());
                 prism = 5 * $('#prism-num').val()
                 $('#err-message').text("")
-                if ($('#prism-num').val() % 1 === 0){
+                if ($('#prism-num').val() % 1 === 0 || $('#prism-num').val() === 0) {
                     $('#prism-start').text(`Prism: $${prism}.00`)
-                    $('#prism-adj').text(`Prism: $${(prism * .15).toFixed(2)}`)
-                    $('#prism-end').text(`Prism: $${(prism * .85).toFixed(2)}`)
+                    $('#prism-adj').text(`Prism Adj: $${(prism * .15).toFixed(2)}`)
+                    $('#prism-end').text(`Prism Final Price: $${(prism * .85).toFixed(2)}`)
 
                 } else {
                     $('#err-message').text("Invalid value, please type a whole number.")
                 }
-    
-    
-            } else if ($('#prism:checked').val() === "off") {
+            }
+
+            if ($('#no-prism:checked').prop('checked')) {
                 prism = 0
-                $('prism-start').text(`Prism Starting Cost: $${prism}.00`)
-                $('prism-adj').text(`Prism Adj: $${prism}.00`)
-                $('prism-end').text(`Prism Final Cost: $${prism}.00`)
+                $('#prism-start').text(`Prism: $0.00`)
+                $('#prism-adj').text(`Prism Adj: $0.00`)
+                $('#prism-end').text(`Prism Final Price: $0.00`)
             }
         })
 
@@ -190,6 +197,10 @@ $(document).ready(function () {
             $("#other-start").text(`Sum of Other Options: $${sum}.00`)
             $("#other-adj").text(`Total Adj for Other Options: $${(sum * .15).toFixed(2)}`);
             $("#other-end").text(`Final Price of Other Options: $${(sum * .85).toFixed(2)}`);
+        } else if (otherOptions.length === 0) {
+            $("#other-start").text(`Sum of Other Options: $0.00`)
+            $("#other-adj").text(`Total Adj for Other Options: $0.00`);
+            $("#other-end").text(`Final Price of Other Options: $0.00`);
         }
 
         subTotal = parseFloat(framePrice) + parseFloat(baseLensPrice) + parseFloat(arPrice) + parseFloat(lensMaterial) + parseFloat(transChoice) + parseFloat(prism)
@@ -197,8 +208,8 @@ $(document).ready(function () {
             subTotal = subTotal + otherOptions[i];
         }
         finalTotal = parseFloat(finalFrame) + parseFloat(finalLensPrice) + parseFloat(finalAR) + parseFloat(finalMat) + parseFloat(transChoice * .6) + parseFloat((prism * .85).toFixed(2)) + (sum * .85.toFixed(2));
-        console.log(finalTotal, finalMat, parseFloat(finalLensPrice), parseFloat(finalAR))
         adjTotal = subTotal - finalTotal
+
         $("#total-start").text(`Sub Total: $${subTotal}.00`);
         $("#total-adj").text(`Total Adj: $${(adjTotal).toFixed(2)}`);
         $("#total-end").text(`Final Total: $${(finalTotal).toFixed(2)}`);
