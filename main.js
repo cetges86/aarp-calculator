@@ -141,7 +141,7 @@ $(document).ready(function () {
 
 
         if ($('#transitions:checked').val() === "on") {
-            transChoice = 140
+            transChoice = 160
 
             $('#trans-start').text(`Transitions: $${transChoice}.00`)
             $('#trans-adj').text(`Transitions Adj: $${transChoice * .4}.00`)
@@ -153,27 +153,26 @@ $(document).ready(function () {
             $('#trans-end').text(`Transitions Final Price: $${transChoice * .6}.00`)
         }
 
-        $('#prism-form').on('change', function () {
-            if ($('#prism').prop('checked')) {
-                prism = 5 * $('#prism-num').val()
-                $('#err-message').text("")
-                if ($('#prism-num').val() % 1 === 0 || $('#prism-num').val() === 0) {
-                    $('#prism-start').text(`Prism: $${prism}.00`)
-                    $('#prism-adj').text(`Prism Adj: $${(prism * .15).toFixed(2)}`)
-                    $('#prism-end').text(`Prism Final Price: $${(prism * .85).toFixed(2)}`)
+        if ($('#prism').prop('checked')) {
+            prism = 5 * $('#prism-num').val()
+            $('#err-message').text("")
+            if ($('#prism-num').val() % 1 === 0 || $('#prism-num').val() === 0) {
+                $('#prism-start').text(`Prism: $${prism}.00`)
+                $('#prism-adj').text(`Prism Adj: $${(prism * .15).toFixed(2)}`)
+                $('#prism-end').text(`Prism Final Price: $${(prism * .85).toFixed(2)}`)
 
-                } else {
-                    $('#err-message').text("Invalid value, please type a whole number.")
-                }
+            } else {
+                $('#err-message').text("Invalid value, please type a whole number.")
             }
+        }
 
-            if ($('#no-prism:checked').prop('checked')) {
-                prism = 0
-                $('#prism-start').text(`Prism: $0.00`)
-                $('#prism-adj').text(`Prism Adj: $0.00`)
-                $('#prism-end').text(`Prism Final Price: $0.00`)
-            }
-        })
+        if ($('#no-prism:checked').prop('checked')) {
+            prism = 0
+            $('#prism-start').text(`Prism: $0.00`)
+            $('#prism-adj').text(`Prism Adj: $0.00`)
+            $('#prism-end').text(`Prism Final Price: $0.00`)
+        }
+
 
 
         $('#other-options').on('change', function () {
@@ -199,6 +198,7 @@ $(document).ready(function () {
         }
 
         subTotal = parseFloat(framePrice) + parseFloat(baseLensPrice) + parseFloat(arPrice) + parseFloat(lensMaterial) + parseFloat(transChoice) + parseFloat(prism)
+        console.log(prism);
         for (let i = 0; i < otherOptions.length; i++) {
             subTotal = subTotal + otherOptions[i];
         }
@@ -208,11 +208,12 @@ $(document).ready(function () {
         $("#total-start").text(`Sub Total: $${subTotal}.00`);
         $("#total-adj").text(`Total Adj: $${(adjTotal).toFixed(2)}`);
         $("#total-end").text(`Final Total: $${(finalTotal).toFixed(2)}`);
-
     }
 
     $('.input-group').on('change', function () {
         if (finalFrame != NaN) {
+            displayPrices();
+        } else if (($('#prism').prop('checked')) && finalFrame != NaN) {
             displayPrices();
         }
     });
